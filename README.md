@@ -7,8 +7,11 @@ content only; it does not deploy a second server or database.
 
 Registered entry: `s_ab283767530445ab9abb091eb7d192bb`.
 
-Automatic Git import is still being implemented in NODE06. Committing here
-currently does not change the live wiki. See NODE06 `docs/ROOT-PREFLIGHT-V1.md`
+Self-service Git import is still being implemented in NODE06. An operator
+publication path is prepared in NODE06 and geno-dice-deploy; it requires reviewed
+application/toolkit updates and an explicit content binding on the existing
+server. Committing here changes the live wiki only after an operator release
+with that binding enabled. No deployment has been verified by this repository. See NODE06 `docs/ROOT-PREFLIGHT-V1.md`
 for the implemented read-only validation contract.
 
 ## Editing and validation
@@ -26,10 +29,15 @@ python -m node06_service.root_preflight --repo /path/to/geno-dice-wiki \
   --site-id s_ab283767530445ab9abb091eb7d192bb
 ```
 
-Preflight does not prove ownership or write to the database. A future source
-registration will issue a proof to add to the manifest, followed by preview and
-explicit acceptance. `welcome.mode=git` describes the proposed import; it does
-not switch the current UI-managed welcome. Keep the existing site registration.
+Preflight does not prove ownership or write to the database. The operator
+release selects this public repository in root-owned `node06-content.conf` and
+publishes the reviewed main SHA into the existing registered site. The application
+records operator authority, source provenance and immutable point revisions.
+This route does not need another site registration or a fabricated source proof.
+A future self-service source registration will issue a real proof, followed by
+preview and explicit acceptance. `welcome.mode=git` describes the proposed import; it does
+not switch the current UI-managed welcome by itself; an accepted operator
+publication explicitly switches it to Git management. Keep the existing site registration.
 The Neocities entry has its own ID and may use a different content repository.
 
 No engine code or workflows are copied here. GitHub Actions is disabled for
