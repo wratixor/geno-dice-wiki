@@ -10,3 +10,28 @@ Registered entry: `s_ab283767530445ab9abb091eb7d192bb`.
 Automatic Git import is still being implemented in NODE06. Committing here
 currently does not change the live wiki. See NODE06 `docs/ROOT-PREFLIGHT-V1.md`
 for the implemented read-only validation contract.
+
+## Editing and validation
+
+`node06-roots.json` opts in only the files under `site-content/`. The bilingual
+welcome connects four independent starter points. These are navigation stubs,
+not a complete game manual or a publication of internal lore. There are no
+language-specific routes. Add source-verified public material incrementally.
+
+From an existing NODE06 checkout, use its installed backend environment:
+
+```sh
+python -m node06_service.root_preflight --repo /path/to/geno-dice-wiki \
+  --commit FULL_40_CHARACTER_COMMIT_SHA \
+  --site-id s_ab283767530445ab9abb091eb7d192bb
+```
+
+Preflight does not prove ownership or write to the database. A future source
+registration will issue a proof to add to the manifest, followed by preview and
+explicit acceptance. `welcome.mode=git` describes the proposed import; it does
+not switch the current UI-managed welcome. Keep the existing site registration.
+The Neocities entry has its own ID and may use a different content repository.
+
+No engine code or workflows are copied here. GitHub Actions is disabled for
+this repository. Code licensing upstream does not grant a new content license;
+content licensing remains an owner decision.

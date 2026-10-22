@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "site_id": "s_ab283767530445ab9abb091eb7d192bb",
+  "content_directory": "site-content",
+  "welcome": {
+    "file": "welcome.md",
+    "mode": "git",
+    "lang": "und"
+  },
+  "points": [
+    {
+      "id": "games-ru",
+      "file": "games-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "games-en",
+      "file": "games-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "lore-ru",
+      "file": "lore-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "lore-en",
+      "file": "lore-en.md",
+      "lang": "en"
+    }
+  ]
+}
