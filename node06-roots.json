@@ -28,5 +28,43 @@
       "file": "lore-en.md",
       "lang": "en"
     }
-  ]
+  ],
+  "home_page": {
+    "title": "Geno-Dice: Wiki",
+    "introduction": "Игры и открытые сведения о мире Geno-Dice. Выберите интересующую тему. / Games and public lore: choose a topic.",
+    "blocks": [
+      {
+        "title": "Игры / Games",
+        "description": "Правила, навыки и игровые понятия. / Rules, skills and game concepts.",
+        "links": [
+          {
+            "label": "Игры",
+            "point_id": "local/games-ru"
+          },
+          {
+            "label": "Games",
+            "point_id": "local/games-en"
+          },
+          {
+            "label": "Geno-Dice Arena",
+            "url": "https://arena.geno-dice.com/"
+          }
+        ]
+      },
+      {
+        "title": "Мир / World",
+        "description": "Опубликованные сведения о вселенной. / Published information about the universe.",
+        "links": [
+          {
+            "label": "Открытый лор",
+            "point_id": "local/lore-ru"
+          },
+          {
+            "label": "Public lore",
+            "point_id": "local/lore-en"
+          }
+        ]
+      }
+    ]
+  }
 }
