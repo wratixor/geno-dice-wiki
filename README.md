@@ -43,3 +43,25 @@ The Neocities entry has its own ID and may use a different content repository.
 No engine code or workflows are copied here. GitHub Actions is disabled for
 this repository. Code licensing upstream does not grant a new content license;
 content licensing remains an owner decision.
+
+
+## Repository-owned home page
+
+`home_page` in `node06-roots.json` defines the landing title, introduction and
+aspect blocks. `point_id: "local/games-ru"` refers to a declared root in this
+manifest; `local/welcome` refers to the existing site entrance. Public global IDs
+or HTTP(S) external URLs are also supported. These navigation links do not create
+graph relations. The two starter blocks are Games and World, not language routes.
+
+Release order: merge the NODE06 Git-home feature (migration 0007) to application
+main before merging this content update; then run the ordinary explicit NODE06
+deploy. Older applications reject the new manifest field rather than executing it.
+Do not merge content first and deploy with an older application main. Repository
+files/scripts/HTML are never run by the content publisher.
+
+New sites default to automatic priority: accepted Git home, then site settings,
+then welcome. Existing saved UI layouts retain their choice on migration. In
+`/sites/` the owner can select Auto, Git, site settings or welcome; Git publication
+does not erase the saved UI layout or force the owner's selection. Removing the
+manifest home clears its accepted Git snapshot at the next successful release;
+temporary fetch/validation failure preserves the last accepted snapshot.
