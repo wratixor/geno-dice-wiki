@@ -77,3 +77,12 @@ then welcome. Existing saved UI layouts retain their choice on migration. In
 does not erase the saved UI layout or force the owner's selection. Removing the
 manifest home clears its accepted Git snapshot at the next successful release;
 temporary fetch/validation failure preserves the last accepted snapshot.
+
+## Godot client development log
+
+Four RU/EN stage pairs cover account/session flow, inventory, shared battle
+presentation and saved language/settings. Each post links to its index, adjacent
+stages and counterpart. The Games root links to its index and each home language
+has a Development card. Source/history evidence and explicit validation limits:
+[Godot devlog evidence](docs/GODOT-DEVLOG-EVIDENCE.md). These posts describe merged
+source, not a newly exported or published client. No hidden lore is added.
