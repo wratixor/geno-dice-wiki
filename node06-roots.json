@@ -30,20 +30,19 @@
     }
   ],
   "home_page": {
+    "default_language": "ru",
     "title": "Geno-Dice: Wiki",
-    "introduction": "Игры и открытые сведения о мире Geno-Dice. Выберите интересующую тему. / Games and public lore: choose a topic.",
+    "introduction": "Игры и открытые сведения о мире Geno-Dice. Выберите интересующую тему.",
+    "entrance_label": "Точка входа",
+    "all_sites_label": "Все сайты",
     "blocks": [
       {
-        "title": "Игры / Games",
-        "description": "Правила, навыки и игровые понятия. / Rules, skills and game concepts.",
+        "title": "Игры",
+        "description": "Правила, навыки и игровые понятия.",
         "links": [
           {
             "label": "Игры",
             "point_id": "local/games-ru"
-          },
-          {
-            "label": "Games",
-            "point_id": "local/games-en"
           },
           {
             "label": "Geno-Dice Arena",
@@ -52,19 +51,49 @@
         ]
       },
       {
-        "title": "Мир / World",
-        "description": "Опубликованные сведения о вселенной. / Published information about the universe.",
+        "title": "Мир",
+        "description": "Опубликованные сведения о вселенной.",
         "links": [
           {
             "label": "Открытый лор",
             "point_id": "local/lore-ru"
-          },
-          {
-            "label": "Public lore",
-            "point_id": "local/lore-en"
           }
         ]
       }
-    ]
+    ],
+    "translations": {
+      "en": {
+        "title": "Geno-Dice: Wiki",
+        "introduction": "Games and public lore of Geno-Dice. Choose a topic.",
+        "entrance_label": "Entrance point",
+        "all_sites_label": "All sites",
+        "blocks": [
+          {
+            "title": "Games",
+            "description": "Rules, skills and game concepts.",
+            "links": [
+              {
+                "label": "Games",
+                "point_id": "local/games-en"
+              },
+              {
+                "label": "Geno-Dice Arena",
+                "url": "https://arena.geno-dice.com/"
+              }
+            ]
+          },
+          {
+            "title": "World",
+            "description": "Published information about the universe.",
+            "links": [
+              {
+                "label": "Public lore",
+                "point_id": "local/lore-en"
+              }
+            ]
+          }
+        ]
+      }
+    }
   }
 }

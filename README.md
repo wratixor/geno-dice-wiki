@@ -7,12 +7,15 @@ content only; it does not deploy a second server or database.
 
 Registered entry: `s_ab283767530445ab9abb091eb7d192bb`.
 
-Self-service Git import is still being implemented in NODE06. An operator
-publication path is prepared in NODE06 and geno-dice-deploy; it requires reviewed
-application/toolkit updates and an explicit content binding on the existing
-server. Committing here changes the live wiki only after an operator release
-with that binding enabled. No deployment has been verified by this repository. See NODE06 `docs/ROOT-PREFLIGHT-V1.md`
-for the implemented read-only validation contract.
+The existing server's operator content binding and NODE06 deploy scripts select
+this repository's reviewed main commit. The configured deployment timer can pick
+up a merged content update; committing or pushing a feature branch is not a live
+publication. Keep that binding and the existing registration. No new server,
+site registration, source proof or workflow is needed for this change.
+
+NODE06 also implements owner-managed public GitHub sources with proof,
+preview/accept and optional polling (`docs/GIT-SOURCES-V1.md` upstream). That is
+a separate path and does not take over an existing operator-managed source.
 
 ## Editing and validation
 
@@ -34,8 +37,8 @@ release selects this public repository in root-owned `node06-content.conf` and
 publishes the reviewed main SHA into the existing registered site. The application
 records operator authority, source provenance and immutable point revisions.
 This route does not need another site registration or a fabricated source proof.
-A future self-service source registration will issue a real proof, followed by
-preview and explicit acceptance. `welcome.mode=git` describes the proposed import; it does
+Owner-managed source registration issues its own proof, followed by
+preview and explicit acceptance; do not use it to replace this operator binding. `welcome.mode=git` describes the proposed import; it does
 not switch the current UI-managed welcome by itself; an accepted operator
 publication explicitly switches it to Git management. Keep the existing site registration.
 The Neocities entry has its own ID and may use a different content repository.
@@ -51,13 +54,22 @@ content licensing remains an owner decision.
 aspect blocks. `point_id: "local/games-ru"` refers to a declared root in this
 manifest; `local/welcome` refers to the existing site entrance. Public global IDs
 or HTTP(S) external URLs are also supported. These navigation links do not create
-graph relations. The two starter blocks are Games and World, not language routes.
+graph relations. The two aspects are Games and World. Home translations select different existing
+point destinations, without adding language routes or partitioning the graph.
 
-Release order: merge the NODE06 Git-home feature (migration 0007) to application
-main before merging this content update; then run the ordinary explicit NODE06
-deploy. Older applications reject the new manifest field rather than executing it.
-Do not merge content first and deploy with an older application main. Repository
-files/scripts/HTML are never run by the content publisher.
+This manifest requires NODE06 main containing `eb3171a` (merged as `29135cf`),
+which implements complete home translations. Ensure that engine version is
+installed **before** publishing this content; older engines reject the added
+fields and retain the last accepted home. No new database migration is needed
+for home translations. The existing deployment pipeline publishes data only;
+repository files/scripts/HTML are never run by the content publisher.
+
+The main variant is Russian (`default_language=ru`); `translations.en` defines
+its own complete introduction, blocks, navigation labels and links. Russian
+Games/World buttons use `local/games-ru` and `local/lore-ru`; English buttons use
+`local/games-en` and `local/lore-en`. The brand and Arena URL are shared explicitly.
+The browser-language/local preference switch and no-JS fallback belong to NODE06.
+No point ID, Markdown body or graph relationship changes in this home update.
 
 New sites default to automatic priority: accepted Git home, then site settings,
 then welcome. Existing saved UI layouts retain their choice on migration. In
