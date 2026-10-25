@@ -27,6 +27,56 @@
       "id": "lore-en",
       "file": "lore-en.md",
       "lang": "en"
+    },
+    {
+      "id": "godot-devlogs-ru",
+      "file": "godot-devlogs-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "godot-account-ru",
+      "file": "godot-account-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "godot-inventory-ru",
+      "file": "godot-inventory-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "godot-battle-ru",
+      "file": "godot-battle-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "godot-settings-ru",
+      "file": "godot-settings-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "godot-devlogs-en",
+      "file": "godot-devlogs-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "godot-account-en",
+      "file": "godot-account-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "godot-inventory-en",
+      "file": "godot-inventory-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "godot-battle-en",
+      "file": "godot-battle-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "godot-settings-en",
+      "file": "godot-settings-en.md",
+      "lang": "en"
     }
   ],
   "home_page": {
@@ -59,6 +109,16 @@
             "point_id": "local/lore-ru"
           }
         ]
+      },
+      {
+        "title": "Разработка",
+        "description": "Этапы разработки клиента Geno-Dice Arena.",
+        "links": [
+          {
+            "label": "Godot-клиент",
+            "point_id": "local/godot-devlogs-ru"
+          }
+        ]
       }
     ],
     "translations": {
@@ -89,6 +149,16 @@
               {
                 "label": "Public lore",
                 "point_id": "local/lore-en"
+              }
+            ]
+          },
+          {
+            "title": "Development",
+            "description": "Geno-Dice Arena client development stages.",
+            "links": [
+              {
+                "label": "Godot client",
+                "point_id": "local/godot-devlogs-en"
               }
             ]
           }
