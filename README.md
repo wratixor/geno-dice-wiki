@@ -19,9 +19,10 @@ a separate path and does not take over an existing operator-managed source.
 
 ## Editing and validation
 
-`node06-roots.json` opts in only the files under `site-content/`. The bilingual
-welcome connects four independent starter points. These are navigation stubs,
-not a complete game manual or a publication of internal lore. There are no
+`node06-roots.json` opts in only the files under `site-content/`. The localized
+entrances connect Games, World, Skills, For developers and Logs. Public skill
+cards document the current Arena rules; the source is not a complete game manual
+or a publication of internal lore. There are no
 language-specific routes. Add source-verified public material incrementally.
 
 From an existing NODE06 checkout, use its installed backend environment:
@@ -54,7 +55,7 @@ content licensing remains an owner decision.
 aspect blocks. `point_id: "local/games-ru"` refers to a declared root in this
 manifest; `local/welcome` refers to the existing site entrance. Public global IDs
 or HTTP(S) external URLs are also supported. These navigation links do not create
-graph relations. The two aspects are Games and World. Home translations select different existing
+graph relations. The five aspects are Games, World, Skills, For developers and Logs. Home translations select different existing
 point destinations, without adding language routes or partitioning the graph.
 
 This manifest requires NODE06 main containing `eb3171a` (merged as `29135cf`),
@@ -65,11 +66,11 @@ for home translations. The existing deployment pipeline publishes data only;
 repository files/scripts/HTML are never run by the content publisher.
 
 The main variant is Russian (`default_language=ru`); `translations.en` defines
-its own complete introduction, blocks, navigation labels and links. Russian
-Games/World buttons use `local/games-ru` and `local/lore-ru`; English buttons use
-`local/games-en` and `local/lore-en`. The brand and Arena URL are shared explicitly.
+its own complete introduction, blocks, navigation labels and links. Each Russian block uses its `*-ru` destinations and each English block its
+`*-en` destinations. The brand and external game URLs are shared explicitly.
 The browser-language/local preference switch and no-JS fallback belong to NODE06.
-No point ID, Markdown body or graph relationship changes in this home update.
+Existing point IDs are preserved while the public reference adds bodies and
+graph relationships through the reviewed content source.
 
 New sites default to automatic priority: accepted Git home, then site settings,
 then welcome. Existing saved UI layouts retain their choice on migration. In
@@ -82,7 +83,27 @@ temporary fetch/validation failure preserves the last accepted snapshot.
 
 Four RU/EN stage pairs cover account/session flow, inventory, shared battle
 presentation and saved language/settings. Each post links to its index, adjacent
-stages and counterpart. The Games root links to its index and each home language
-has a Development card. Source/history evidence and explicit validation limits:
+stages and counterpart. The Games and Logs roots link to its index; each home language has a Logs card. Source/history evidence and explicit validation limits:
 [Godot devlog evidence](docs/GODOT-DEVLOG-EVIDENCE.md). These posts describe merged
 source, not a newly exported or published client. No hidden lore is added.
+
+
+## Expanded public reference
+
+The starter pack has 16 skill cards per language with source-verified Normal and
+Ultimate formulas and links to the eight existing NODE06 triples. Characters,
+companies and the campaign have public index points; Andy/Unknown are names and
+links only. Developer roots cover static, connected and independent operation;
+Logs connects development journals and page-change discussion.
+
+This packet needs the engine's operator-only `md://core/` support before content
+publication. Keep the existing site registration and operator deploy binding.
+Source/translation/visibility evidence and graph validation:
+[Content sources](docs/CONTENT-SOURCES.md).
+
+Validation checkpoint: immutable root preflight accepted 82 points with no graph
+warnings. Public source coefficients and all 32 English mode formulas match the
+saved catalog. Disposable PostgreSQL publication verified bidirectional skill/
+core-triple visibility without copied core revisions. Home acceptance checked
+five cards, language-specific destinations and desktop/390px layout. Deployment
+remains pending. Install NODE06 core-link support before publishing this source.

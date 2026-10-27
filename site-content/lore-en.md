@@ -1,5 +1,5 @@
-# Public lore
+# Geno-Dice world
 
-An entrance for published information about the world of Geno-Dice. Game rules and world descriptions can be connected as the reference grows.
+A public reference for the Geno-Dice world, characters and companies.
 
-[Home](md://local/welcome) · [Открытый лор](md://local/lore-ru) · [Games](md://local/games-en)
+[Geno-Dice Arena campaign](md://local/campaign-en) · [Characters](md://local/characters-en) · [Companies](md://local/companies-en) · [Geno-Dice games](md://local/games-en) · [In Russian](md://local/lore-ru) · [Geno-Dice: Wiki](md://local/welcome-en)

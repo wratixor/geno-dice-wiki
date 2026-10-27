@@ -8,3 +8,5 @@ Four connected stages of Geno-Dice Arena development, grounded in merged source 
 - [Stage 4. Language and settings without losing progress](md://local/godot-settings-en)
 
 [Games](md://local/games-en) · [Русский](md://local/godot-devlogs-ru)
+
+[Logs](md://local/logs-en)

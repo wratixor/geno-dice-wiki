@@ -8,3 +8,5 @@
 - [Этап 4. Язык и настройки без потери прогресса](md://local/godot-settings-ru)
 
 [Игры](md://local/games-ru) · [English](md://local/godot-devlogs-en)
+
+[Логи](md://local/logs-ru)
