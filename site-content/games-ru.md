@@ -1,9 +1,5 @@
 # Игры Geno-Dice
 
-Точка входа в справочник по играм Geno-Dice.
+[Главный сайт Geno-Dice](https://geno-dice.com/) · [Geno-Dice Arena](https://arena.geno-dice.com/) · [Мини-игры](https://miniapp.geno-dice.com/)
 
-[Geno-Dice Arena](https://arena.geno-dice.com/)
-
-[Главная](md://local/welcome) · [Games](md://local/games-en) · [Открытый лор](md://local/lore-ru)
-
-[Разработка Godot-клиента](md://local/godot-devlogs-ru)
+[Кампания Geno-Dice Arena](md://local/campaign-ru) · [На английском](md://local/games-en) · [Журнал Godot](md://local/godot-devlogs-ru) · [Мир Geno-Dice](md://local/lore-ru) · [Навыки](md://local/skills-ru) · [Geno-Dice: Wiki](md://local/welcome)

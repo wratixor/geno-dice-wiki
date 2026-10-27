@@ -77,46 +77,437 @@
       "id": "godot-settings-en",
       "file": "godot-settings-en.md",
       "lang": "en"
+    },
+    {
+      "id": "skills-ru",
+      "file": "skills-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skills-en",
+      "file": "skills-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "developers-ru",
+      "file": "developers-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "developers-en",
+      "file": "developers-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "logs-ru",
+      "file": "logs-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "logs-en",
+      "file": "logs-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "page-changes-ru",
+      "file": "page-changes-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "page-changes-en",
+      "file": "page-changes-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "characters-ru",
+      "file": "characters-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "characters-en",
+      "file": "characters-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "companies-ru",
+      "file": "companies-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "companies-en",
+      "file": "companies-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "campaign-ru",
+      "file": "campaign-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "campaign-en",
+      "file": "campaign-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "geno-dice-corp-ru",
+      "file": "geno-dice-corp-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "geno-dice-corp-en",
+      "file": "geno-dice-corp-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "leslie-ru",
+      "file": "leslie-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "leslie-en",
+      "file": "leslie-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "andy-ru",
+      "file": "andy-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "andy-en",
+      "file": "andy-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "unknown-ru",
+      "file": "unknown-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "unknown-en",
+      "file": "unknown-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "starterpack-ru",
+      "file": "starterpack-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "starterpack-en",
+      "file": "starterpack-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "starterpack-body-ru",
+      "file": "starterpack-body-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "starterpack-body-en",
+      "file": "starterpack-body-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "starterpack-spirit-ru",
+      "file": "starterpack-spirit-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "starterpack-spirit-en",
+      "file": "starterpack-spirit-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "formulas-ru",
+      "file": "formulas-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "formulas-en",
+      "file": "formulas-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "formulas-body-ru",
+      "file": "formulas-body-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "formulas-body-en",
+      "file": "formulas-body-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "formulas-spirit-ru",
+      "file": "formulas-spirit-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "formulas-spirit-en",
+      "file": "formulas-spirit-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-power-strike-ru",
+      "file": "skill-power-strike-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-power-strike-en",
+      "file": "skill-power-strike-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-intimidating-roar-ru",
+      "file": "skill-intimidating-roar-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-intimidating-roar-en",
+      "file": "skill-intimidating-roar-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-combat-stance-ru",
+      "file": "skill-combat-stance-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-combat-stance-en",
+      "file": "skill-combat-stance-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-smoke-screen-ru",
+      "file": "skill-smoke-screen-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-smoke-screen-en",
+      "file": "skill-smoke-screen-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-feinting-thrust-ru",
+      "file": "skill-feinting-thrust-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-feinting-thrust-en",
+      "file": "skill-feinting-thrust-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-indescribable-dance-ru",
+      "file": "skill-indescribable-dance-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-indescribable-dance-en",
+      "file": "skill-indescribable-dance-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-regeneration-ru",
+      "file": "skill-regeneration-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-regeneration-en",
+      "file": "skill-regeneration-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-meditation-ru",
+      "file": "skill-meditation-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-meditation-en",
+      "file": "skill-meditation-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-stone-projectile-ru",
+      "file": "skill-stone-projectile-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-stone-projectile-en",
+      "file": "skill-stone-projectile-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-dragon-roar-ru",
+      "file": "skill-dragon-roar-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-dragon-roar-en",
+      "file": "skill-dragon-roar-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-heal-ru",
+      "file": "skill-heal-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-heal-en",
+      "file": "skill-heal-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-cleanse-ru",
+      "file": "skill-cleanse-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-cleanse-en",
+      "file": "skill-cleanse-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-curse-ru",
+      "file": "skill-curse-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-curse-en",
+      "file": "skill-curse-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-silence-ru",
+      "file": "skill-silence-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-silence-en",
+      "file": "skill-silence-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-physical-vampirism-ru",
+      "file": "skill-physical-vampirism-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-physical-vampirism-en",
+      "file": "skill-physical-vampirism-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "skill-psychic-vampirism-ru",
+      "file": "skill-psychic-vampirism-ru.md",
+      "lang": "ru"
+    },
+    {
+      "id": "skill-psychic-vampirism-en",
+      "file": "skill-psychic-vampirism-en.md",
+      "lang": "en"
+    },
+    {
+      "id": "welcome-en",
+      "file": "welcome-en.md",
+      "lang": "en"
     }
   ],
   "home_page": {
     "default_language": "ru",
     "title": "Geno-Dice: Wiki",
-    "introduction": "Игры и открытые сведения о мире Geno-Dice. Выберите интересующую тему.",
+    "introduction": "Игры, мир, навыки, установка вики и логи разработки.",
     "entrance_label": "Точка входа",
     "all_sites_label": "Все сайты",
     "blocks": [
       {
         "title": "Игры",
-        "description": "Правила, навыки и игровые понятия.",
+        "description": "Игры Geno-Dice и мини-игры.",
         "links": [
           {
-            "label": "Игры",
+            "label": "Все игры",
             "point_id": "local/games-ru"
+          },
+          {
+            "label": "Главная Geno-Dice",
+            "url": "https://geno-dice.com/"
           },
           {
             "label": "Geno-Dice Arena",
             "url": "https://arena.geno-dice.com/"
+          },
+          {
+            "label": "Мини-игры",
+            "url": "https://miniapp.geno-dice.com/"
           }
         ]
       },
       {
         "title": "Мир",
-        "description": "Опубликованные сведения о вселенной.",
+        "description": "Персонажи, компании и кампания Arena.",
         "links": [
           {
-            "label": "Открытый лор",
+            "label": "Мир",
             "point_id": "local/lore-ru"
+          },
+          {
+            "label": "Персонажи",
+            "point_id": "local/characters-ru"
+          },
+          {
+            "label": "Компании",
+            "point_id": "local/companies-ru"
           }
         ]
       },
       {
-        "title": "Разработка",
-        "description": "Этапы разработки клиента Geno-Dice Arena.",
+        "title": "Навыки",
+        "description": "16 навыков Core16: описания, формулы и тройки.",
         "links": [
+          {
+            "label": "Стартерпак",
+            "point_id": "local/starterpack-ru"
+          },
+          {
+            "label": "Формулы",
+            "point_id": "local/formulas-ru"
+          },
+          {
+            "label": "Навыки",
+            "point_id": "local/skills-ru"
+          }
+        ]
+      },
+      {
+        "title": "Для разработчиков",
+        "description": "Установка, режимы работы и устройство вики.",
+        "links": [
+          {
+            "label": "Документация",
+            "point_id": "local/developers-ru"
+          },
+          {
+            "label": "Установка",
+            "url": "https://node06.neocities.org/setup/"
+          }
+        ]
+      },
+      {
+        "title": "Логи",
+        "description": "Блоги разработки и обсуждение правок страниц.",
+        "links": [
+          {
+            "label": "Все логи",
+            "point_id": "local/logs-ru"
+          },
           {
             "label": "Godot-клиент",
             "point_id": "local/godot-devlogs-ru"
+          },
+          {
+            "label": "Обсуждение правок",
+            "point_id": "local/page-changes-ru"
           }
         ]
       }
@@ -124,41 +515,97 @@
     "translations": {
       "en": {
         "title": "Geno-Dice: Wiki",
-        "introduction": "Games and public lore of Geno-Dice. Choose a topic.",
+        "introduction": "Games, world, skills, wiki installation and development logs.",
         "entrance_label": "Entrance point",
         "all_sites_label": "All sites",
         "blocks": [
           {
             "title": "Games",
-            "description": "Rules, skills and game concepts.",
+            "description": "Geno-Dice games and mini-games.",
             "links": [
               {
-                "label": "Games",
+                "label": "All games",
                 "point_id": "local/games-en"
+              },
+              {
+                "label": "Geno-Dice home",
+                "url": "https://geno-dice.com/"
               },
               {
                 "label": "Geno-Dice Arena",
                 "url": "https://arena.geno-dice.com/"
+              },
+              {
+                "label": "Mini-games",
+                "url": "https://miniapp.geno-dice.com/"
               }
             ]
           },
           {
             "title": "World",
-            "description": "Published information about the universe.",
+            "description": "Characters, companies and the Arena campaign.",
             "links": [
               {
-                "label": "Public lore",
+                "label": "World",
                 "point_id": "local/lore-en"
+              },
+              {
+                "label": "Characters",
+                "point_id": "local/characters-en"
+              },
+              {
+                "label": "Companies",
+                "point_id": "local/companies-en"
               }
             ]
           },
           {
-            "title": "Development",
-            "description": "Geno-Dice Arena client development stages.",
+            "title": "Skills",
+            "description": "16 Core16 skills: descriptions, formulas and triples.",
             "links": [
+              {
+                "label": "Starter pack",
+                "point_id": "local/starterpack-en"
+              },
+              {
+                "label": "Formulas",
+                "point_id": "local/formulas-en"
+              },
+              {
+                "label": "Skills",
+                "point_id": "local/skills-en"
+              }
+            ]
+          },
+          {
+            "title": "For developers",
+            "description": "Installation, operating modes and wiki architecture.",
+            "links": [
+              {
+                "label": "Documentation",
+                "point_id": "local/developers-en"
+              },
+              {
+                "label": "Installation",
+                "url": "https://node06.neocities.org/setup/en/"
+              }
+            ]
+          },
+          {
+            "title": "Logs",
+            "description": "Development blogs and page-change discussions.",
+            "links": [
+              {
+                "label": "All logs",
+                "point_id": "local/logs-en"
+              },
               {
                 "label": "Godot client",
                 "point_id": "local/godot-devlogs-en"
+              },
+              {
+                "label": "Page changes",
+                "point_id": "local/page-changes-en"
               }
             ]
           }

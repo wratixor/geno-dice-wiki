@@ -1,5 +1,5 @@
-# Открытый лор
+# Мир Geno-Dice
 
-Место для опубликованных сведений о мире Geno-Dice. Игровые правила и описания мира связываются точками по мере наполнения справочника.
+Публичный справочник по миру, персонажам и компаниям Geno-Dice.
 
-[Главная](md://local/welcome) · [Public lore](md://local/lore-en) · [Игры](md://local/games-ru)
+[Кампания Geno-Dice Arena](md://local/campaign-ru) · [Персонажи](md://local/characters-ru) · [Компании](md://local/companies-ru) · [Игры Geno-Dice](md://local/games-ru) · [На английском](md://local/lore-en) · [Geno-Dice: Wiki](md://local/welcome)

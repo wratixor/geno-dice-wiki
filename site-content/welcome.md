@@ -1,9 +1,5 @@
 # Geno-Dice: Wiki
 
-[Игры](md://local/games-ru) · [Games](md://local/games-en)
+Игры, мир, навыки, документация и логи разработки. Выберите раздел.
 
-[Открытый лор](md://local/lore-ru) · [Public lore](md://local/lore-en)
-
-Справочник по играм и открытому миру Geno-Dice. Эти страницы — начало общего пространства смыслов.
-
-A reference for Geno-Dice games and public lore. These pages are an entrance into a shared space of meanings.
+[Для разработчиков](md://local/developers-ru) · [Игры Geno-Dice](md://local/games-ru) · [Логи](md://local/logs-ru) · [Мир Geno-Dice](md://local/lore-ru) · [Навыки](md://local/skills-ru) · [На английском](md://local/welcome-en)

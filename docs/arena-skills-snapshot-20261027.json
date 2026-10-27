@@ -1,0 +1,837 @@
+{
+  "balance_version": "arena-balance-v15-020-core16-stat-formulas",
+  "scope_ru": "В живых дуэлях round-silence-v1 Молчанка длится 2/3 полных раунда; исследовательский симулятор без этого live overlay использует заряды. Архивные отчёты сохраняют свою версию правил. Исполняемые правила имеют приоритет над ранними постерами.",
+  "scope_en": "Live round-silence-v1 duels use Silence for 2/3 full rounds; research simulations without this live overlay use charges. Archived reports retain their own rule version. Executable rules take precedence over early posters.",
+  "common_formula": {
+    "ru": "v15-020: P/S/A — Основной/Поддерживающий/Вспомогательный stat role навыка. Q(x) — гладкое отношение абсолютного aggregate stat к нейтральной опоре режима (80 Normal, 125 Ultimate), с недостижимыми асимптотами и без gameplay clamp. E25(A/O)=1+0.25×(A-O)/(A+O+20), E30 аналогично с 0.30; O — противоположный stat. Ref — нейтральный калибровочный output старой системы, а не постоянный tier-множитель. Конкретный навык ниже показывает, какие компоненты зависят от P, S и A.",
+    "en": "v15-020: P/S/A are the skill's Primary/Support/Auxiliary stat roles. Q(x) is a smooth ratio of the absolute aggregate stat to the mode reference (80 Normal, 125 Ultimate), with unreachable asymptotes and no gameplay clamp. E25(A/O)=1+0.25×(A-O)/(A+O+20), E30 uses 0.30; O is the opposing stat. Ref is the neutral legacy calibration output, not a permanent tier multiplier. Each skill formula below states which components are owned by P, S and A."
+  },
+  "action_economy": {
+    "normal_magic_cost": 1,
+    "ultimate_magic_cost": 1,
+    "overload_impulse_cost": 1,
+    "focus_gain": 2,
+    "ru": "MAGIC-действия тратят 1 Импульс. Перегрузка доступна только Ultimate и может стоить 1 Guard или 1 дополнительный Impulse в зависимости от навыка. Generic +1 Impulse после исполнения получают только non-MAGIC действия инициативной группы ATTACK; CONTROL, DEFENCE и RECOVERY его не получают. Выбор: Грань, Перегрузка, Стойка, Фокус или редкий Переброс.",
+    "en": "MAGIC actions spend 1 Impulse. Overload is Ultimate-only and costs either 1 Guard or 1 extra Impulse depending on the skill. Generic +1 Impulse on execution belongs only to non-MAGIC actions in the ATTACK initiative group; CONTROL, DEFENCE, and RECOVERY do not receive it. Choose Face, Overload, Brace, Focus, or a rare Reroll."
+  },
+  "resource_model": {
+    "unit_scale": 10.0,
+    "base_endurance": 1000.0,
+    "base_psyche": 1000.0,
+    "survivability_by_tier": {
+      "1": 0.9,
+      "2": 0.92,
+      "3": 1.08,
+      "4": 1.24,
+      "5": 1.36,
+      "6": 1.7
+    },
+    "max_rounds": 30,
+    "round_limit_score": "Endurance + Psyche",
+    "guard_max": 3,
+    "guard_start": 0,
+    "impulse_max": 3,
+    "impulse_start": 0,
+    "psychic_route": "Psyche directly; x0.80 while target holds any Impulse; damage never consumes Impulse by default",
+    "physical_route": "Guard -> Endurance"
+  },
+  "tier_seeds": {
+    "1": {
+      "main": 10.0,
+      "support": 3.0,
+      "aux": 0.06,
+      "mode": "normal"
+    },
+    "2": {
+      "main": 12.0,
+      "support": 4.0,
+      "aux": 0.08,
+      "mode": "normal"
+    },
+    "3": {
+      "main": 14.0,
+      "support": 5.0,
+      "aux": 0.1,
+      "mode": "normal"
+    },
+    "4": {
+      "main": 16.0,
+      "support": 6.0,
+      "aux": 0.12,
+      "mode": "ultimate"
+    },
+    "5": {
+      "main": 18.0,
+      "support": 7.0,
+      "aux": 0.14,
+      "mode": "ultimate"
+    },
+    "6": {
+      "main": 20.0,
+      "support": 8.0,
+      "aux": 0.16,
+      "mode": "ultimate"
+    }
+  },
+  "skills": [
+    {
+      "id": 1,
+      "key": "power_strike",
+      "name_ru": "Силовой удар",
+      "emoji": "🔨",
+      "initiative": 35,
+      "initiative_hex": "0x23",
+      "roles": {
+        "primary": "body",
+        "support": "onslaught",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "attack",
+        "contact",
+        "melee",
+        "negative",
+        "physical"
+      ],
+      "lore": "Тело вкладывает прямую силу; Натиск добавляет сокрушение; Реакция повышает эффективность бонуса.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+reaction",
+      "normal_damage_scale": 9.1,
+      "ultimate_damage_scale": 7.0,
+      "normal_effective_direct_damage_scale": 9.1,
+      "name_en": "Power Strike",
+      "lore_ru": "Тело создаёт удар, Натиск — сокрушение; усиление тратит заранее подготовленный Guard, а не здоровье.",
+      "lore_en": "Body supplies the hit and Onslaught the crush; empowerment spends prepared Guard, not health.",
+      "normal": {
+        "formula": "Physical = 125.664 × [0.70 Q(Body) + 0.30 Q(Onslaught) × E25(Reaction/Technique)]",
+        "description_ru": "Сильный немагический удар; исполнение даёт +1 Импульс.",
+        "description_en": "Strong non-MAGIC hit; execution grants +1 Impulse."
+      },
+      "ultimate": {
+        "formula": "Physical = 181.86 × [0.70 Q(Body) + 0.30 Q(Onslaught) × E25(Reaction/Technique)]; Overload keeps the Guard-crush rider",
+        "description_ru": "Усиленная грань превращает подготовленную стойку в сокрушение.",
+        "description_en": "Empowered Face converts prepared Guard into a crush."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 2,
+      "key": "intimidating_roar",
+      "name_ru": "Устрашающий рёв",
+      "emoji": "🦁",
+      "initiative": 3,
+      "initiative_hex": "0x03",
+      "roles": {
+        "primary": "onslaught",
+        "support": "body",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "attack",
+        "control",
+        "negative",
+        "psychic",
+        "ranged",
+        "verbal"
+      ],
+      "lore": "Рёв — немагическое давление на Psyche и контроль. FEAR возникает против раскрытой цели или уже серьёзно просевшей Psyche; Ultimate усиливает контроль, но сам больше не сбивает Импульс.",
+      "initiative_group": "control",
+      "initiative_lore_tempo": "onslaught+reaction",
+      "normal_damage_scale": 4.5,
+      "ultimate_damage_scale": 5.5,
+      "normal_effective_direct_damage_scale": 4.5,
+      "name_en": "Intimidating Roar",
+      "lore_ru": "Рёв немагически давит Психику и закрепляет страх только когда воля уже открыта или Психика пошатнулась; сам Impulse он не снимает.",
+      "lore_en": "The roar pressures Psyche without magic and establishes Fear only when will is already exposed or Psyche is shaken; it does not drain Impulse itself.",
+      "normal": {
+        "formula": "Psychic = 73.44 × [0.70 Q(Onslaught) + 0.30 Q(Body) × E25(Reaction/Technique)]; FEAR riders unchanged",
+        "description_ru": "Контроль и добивание пошатнувшейся воли, а не основной Psychic DPS.",
+        "description_en": "Control and pressure on an already shaken target, not primary Psychic DPS."
+      },
+      "ultimate": {
+        "formula": "Psychic = 142.89 × [0.70 Q(Onslaught) + 0.30 Q(Body) × E25(Reaction/Technique)]; Ultimate/Overload FEAR riders unchanged",
+        "description_ru": "Ultimate усиливает именно контроль; Рёв сам по себе Импульс не снимает.",
+        "description_en": "Ultimate strengthens control; the Roar itself does not drain Impulse."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 3,
+      "key": "combat_stance",
+      "name_ru": "Боевая стойка",
+      "emoji": "🤺",
+      "initiative": 25,
+      "initiative_hex": "0x19",
+      "roles": {
+        "primary": "body",
+        "support": "self_control",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "defence",
+        "physical",
+        "positive"
+      ],
+      "lore": "Тело принимает устойчивую боевую позицию, Самообладание удерживает форму, Реакция превращает защитную готовность в более эффективный следующий физический ответ.",
+      "initiative_group": "defence",
+      "initiative_lore_tempo": "self_control+reaction",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Combat Stance",
+      "lore_ru": "Боевая стойка — подготовка тела: один Guard принимает физическое воздействие, а правильная позиция усиливает следующий физический ответ.",
+      "lore_en": "Combat Stance is bodily preparation: one Guard receives a Physical hit and proper positioning strengthens the next Physical response.",
+      "normal": {
+        "formula": "Guard +1; next Physical bash = 122.4 × [0.70 Q(Body) + 0.30 Q(Self-Control) × E25(Reaction/Technique)]",
+        "description_ru": "Боевая стойка одновременно даёт один заряд Guard и готовит следующий физический ответ.",
+        "description_en": "Combat Stance grants one Guard charge and prepares the next Physical response."
+      },
+      "ultimate": {
+        "formula": "Guard +1; FORTIFIED; bash = 259.8 × [0.70 Q(Body) + 0.30 Q(Self-Control) × E25(Reaction/Technique)]; Overload pre-declaration Guard unchanged",
+        "description_ru": "Ultimate сохраняет последний Guard от обычного Physical damage, пока действует Укрепление; перегруженное Physical-действие всё ещё может его снять. Overload — предподготовка: Impulse платится при объявлении, а обычный +1 Guard появляется до разрешения инициативы и повторно при исполнении не начисляется.",
+        "description_en": "While Fortified is active, ordinary Physical damage cannot remove the last Guard; an overloaded Physical action still can. Overload is pre-declaration preparation: its Impulse is paid on declaration, the ordinary +1 Guard is received before initiative resolves, and that Guard is not granted again on execution."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 4,
+      "key": "smoke_screen",
+      "name_ru": "Дымовая завеса",
+      "emoji": "🌫️",
+      "initiative": 25,
+      "initiative_hex": "0x19",
+      "roles": {
+        "primary": "reaction",
+        "support": "self_control",
+        "auxiliary": "body"
+      },
+      "tags": [
+        "defence",
+        "physical",
+        "positive"
+      ],
+      "lore": "Дым заставляет прямые физические удары проходить вскользь, сохраняя текущий Guard; после раунда выигранное время превращается в подготовку.",
+      "initiative_group": "defence",
+      "initiative_lore_tempo": "self_control+reaction",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Smoke Screen",
+      "lore_ru": "Дым не создаёт броню из воздуха: он заставляет прямые физические атаки пройти вскользь и даёт время занять позицию уже после текущего раунда.",
+      "lore_en": "Smoke does not conjure armour: it makes direct Physical attacks glance off and buys time to take position after the current round.",
+      "normal": {
+        "formula": "quality = 0.70 Q80(Reaction) + 0.30 Q80(Self-Control) × E25(Body/Spirit); direct Physical multiplier = 1 - SmokeCurve(quality); end round +1 Guard",
+        "description_ru": "Дым смягчает прямые физические попадания текущего раунда, включая удары, обходящие Guard, не расходуя уже накопленный Guard; после рассеивания даёт +1 Guard.",
+        "description_en": "Smoke softens direct Physical hits this round, including Guard-bypassing hits, without consuming existing Guard; after it clears, gain +1 Guard."
+      },
+      "ultimate": {
+        "formula": "same stat-scaled Smoke; Ultimate end-round Guard/Impulse riders and Overload extra Guard unchanged",
+        "description_ru": "Ultimate превращает выигранное дымом время в подготовку следующего действия: после раунда даёт +1 Guard и +1 Impulse. Overload платит 1 Impulse за дополнительный +1 Guard, но не отменяет обычный Ultimate-профит +1 Impulse.",
+        "description_en": "Ultimate turns the time won by smoke into preparation for the next action: after the round it grants +1 Guard and +1 Impulse. Overload spends 1 Impulse for one additional Guard and keeps the ordinary Ultimate +1 Impulse payoff."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 5,
+      "key": "feinting_thrust",
+      "name_ru": "Обманный выпад",
+      "emoji": "🗡️",
+      "initiative": 38,
+      "initiative_hex": "0x26",
+      "roles": {
+        "primary": "technique",
+        "support": "body",
+        "auxiliary": "onslaught"
+      },
+      "tags": [
+        "attack",
+        "contact",
+        "melee",
+        "negative",
+        "physical"
+      ],
+      "lore": "Техника провоцирует защитную реакцию: если цель в Стойке, один Guard тратится на финт, а настоящий выпад проходит в Endurance. Без Guard это намеренно посредственный прямой удар.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+technique",
+      "normal_damage_scale": 4.875,
+      "ultimate_damage_scale": 4.82625,
+      "normal_effective_direct_damage_scale": 4.875,
+      "name_en": "Feinting Thrust",
+      "lore_ru": "Обманный выпад пользуется предсказуемостью подготовленной Стойки: против открытой цели хитрость почти ничего не добавляет.",
+      "lore_en": "Feinting Thrust exploits the predictability of prepared Guard; against an open target the trick adds little.",
+      "normal": {
+        "formula": "Open = 79.56 × Q(Body) × E30(Onslaught/Self-Control); guarded adds 22.44 × Q(Technique)",
+        "description_ru": "Открытую цель финт бьёт посредственно. Против Guard ложная реакция тратит 1 Guard, после чего настоящий выпад обходит остаток Guard.",
+        "description_en": "The feint is intentionally modest into an open target. Against Guard, the false reaction spends 1 Guard and the real thrust bypasses the remainder."
+      },
+      "ultimate": {
+        "formula": "Open = 125.386 × Q(Body) × E30(Onslaught/Self-Control); guarded adds 69.464 × Q(Technique); Overload strips 1 Guard before damage",
+        "description_ru": "Ultimate антитанковый: урон по открытой цели ниже, чем после bait Guard; актуальные коэффициенты указаны в формуле. Overload платит 1 Guard при объявлении и пытается снять ещё 1 Guard; защитного эффекта нет.",
+        "description_en": "Ultimate is anti-tank: open-target damage is lower than damage after Guard bait; current coefficients are shown in the formula. Overload spends 1 Guard at declaration and attempts to strip one additional Guard; it grants no defensive evasion."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 6,
+      "key": "indescribable_dance",
+      "name_ru": "Неописуемый танец",
+      "emoji": "🕺",
+      "initiative": 6,
+      "initiative_hex": "0x06",
+      "roles": {
+        "primary": "technique",
+        "support": "onslaught",
+        "auxiliary": "body"
+      },
+      "tags": [
+        "control",
+        "negative",
+        "psychic",
+        "ritual"
+      ],
+      "lore": "Ритуальный контроль сбивает ритм противника и одновременно даёт исполнителю время занять Guard. Это CONTROL, поэтому обычный non-MAGIC Impulse он не создаёт.",
+      "initiative_group": "control",
+      "initiative_lore_tempo": "onslaught+technique",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Indescribable Dance",
+      "lore_ru": "Неописуемый ритуальный танец сбивает чужой ритм подготовки, а исполнителю даёт время занять Guard; это контроль темпа, а не атака и не магия.",
+      "lore_en": "The indescribable ritual dance disrupts the opponent's preparation rhythm while buying the performer time to take Guard; it is tempo control, not an attack or magic.",
+      "normal": {
+        "formula": "Guard +1; execution quality = 0.70 Q80(Technique) + 0.30 Q80(Onslaught) × E25(Body/Spirit); Endurance self-harm = decreasing DanceCurve(quality); disrupt next Impulse gain",
+        "description_ru": "Танец сбивает ритм следующего набора Impulse, даёт исполнителю +1 Guard и слегка изматывает его Endurance; правильные статы уменьшают цену ритуала. Это CONTROL, поэтому generic Impulse не создаётся.",
+        "description_en": "The dance disrupts the target's next positive Impulse gain, grants +1 Guard, and slightly exhausts the performer's Endurance; proper stats reduce that ritual cost. It is CONTROL, so it grants no generic Impulse."
+      },
+      "ultimate": {
+        "formula": "same stat-scaled self-harm; block new Impulse this round; Overload Guard rider unchanged",
+        "description_ru": "Уже накопленный Impulse можно тратить; блокируется только новый набор до конца текущего раунда. Overload усиливает собственную подготовку, не продлевая контроль.",
+        "description_en": "Stored Impulse remains spendable; only new gains are blocked for the rest of the current round. Overload strengthens the user's preparation without extending the control window."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 7,
+      "key": "regeneration",
+      "name_ru": "Регенерация",
+      "emoji": "🌿",
+      "initiative": 60,
+      "initiative_hex": "0x3C",
+      "roles": {
+        "primary": "self_control",
+        "support": "body",
+        "auxiliary": "technique"
+      },
+      "tags": [
+        "hot",
+        "physical",
+        "positive",
+        "recovery"
+      ],
+      "lore": "Самообладание удерживает процесс, Тело даёт восстановительный потенциал, Техника повышает эффективность.",
+      "initiative_group": "recovery",
+      "initiative_lore_tempo": "self_control+technique",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Regeneration",
+      "lore_ru": "Естественный процесс постепенно восстанавливает тело; избыток лечения не создаёт боевую Стойку сам по себе.",
+      "lore_en": "A natural process restores the body over time; excess healing does not create combat Guard by itself.",
+      "normal": {
+        "formula": "Endurance HoT total = 130.56 × [0.70 Q(Self-Control) + 0.30 Q(Body)]; Technique/Reaction bias redistributes the fixed total across 3 ticks",
+        "description_ru": "Медленное естественное восстановление тела.",
+        "description_en": "Slow natural bodily recovery."
+      },
+      "ultimate": {
+        "formula": "Endurance HoT total = 389.7 × [0.70 Q(Self-Control) + 0.30 Q(Body)]; same redistribution; Overload frontloads one scheduled tick",
+        "description_ru": "Ultimate сильнее лечит тело, но лишняя Выносливость больше не превращается в Guard.",
+        "description_en": "Ultimate restores more Endurance, but excess bodily healing no longer becomes Guard."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 8,
+      "key": "meditation",
+      "name_ru": "Медитация",
+      "emoji": "🧘",
+      "initiative": 60,
+      "initiative_hex": "0x3C",
+      "roles": {
+        "primary": "self_control",
+        "support": "technique",
+        "auxiliary": "body"
+      },
+      "tags": [
+        "hot",
+        "positive",
+        "psychic",
+        "recovery",
+        "ritual"
+      ],
+      "lore": "Сознание стабилизируется через удержание формы, технику практики и телесную опору.",
+      "initiative_group": "recovery",
+      "initiative_lore_tempo": "self_control+technique",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Meditation",
+      "lore_ru": "Практика сознания восстанавливает Психику; Overload позволяет отказаться от физически защищённой позиции и глубже уйти в концентрацию, меняя 1 Guard на 1 Impulse.",
+      "lore_en": "Mind practice restores Psyche; Overload abandons a physically defended position for deeper concentration, trading 1 Guard for 1 Impulse.",
+      "normal": {
+        "formula": "Psyche HoT total = 130.56 × [0.70 Q(Self-Control) + 0.30 Q(Technique)]; Body/Spirit bias redistributes the fixed total across 3 ticks",
+        "description_ru": "Дисциплина восстанавливает психическую целостность.",
+        "description_en": "Discipline restores psychic integrity."
+      },
+      "ultimate": {
+        "formula": "Psyche HoT total = 324.75 × [0.70 Q(Self-Control) + 0.30 Q(Technique)]; same redistribution; full-tick/Overload Impulse riders unchanged",
+        "description_ru": "Автоматической конверсии overheal нет: Overload сознательно меняет защищённую позицию на +1 Impulse.",
+        "description_en": "There is no automatic overheal conversion: Overload deliberately trades prepared Guard for +1 Impulse."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 9,
+      "key": "stone_projectile",
+      "name_ru": "Каменный град",
+      "emoji": "🪨",
+      "initiative": 35,
+      "initiative_hex": "0x23",
+      "roles": {
+        "primary": "spirit",
+        "support": "onslaught",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "attack",
+        "magic",
+        "negative",
+        "physical",
+        "projectile",
+        "ranged"
+      ],
+      "lore": "Магия создаёт серию отдельных физических камней. Каждый камень отдельно встречает Guard; Ultimate даёт STAGGER, если град сначала встретил Стойку, а затем в том же действии добрался до Endurance.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+reaction",
+      "normal_damage_scale": 4.55,
+      "ultimate_damage_scale": 5.2,
+      "normal_effective_direct_damage_scale": 4.55,
+      "name_en": "Stone Barrage",
+      "lore_ru": "Камни создаются магией, но остаются отдельными физическими объектами: каждый отдельно встречает Стойку, а третий камень требует перегрузки Импульсом.",
+      "lore_en": "The stones are created by magic but remain separate physical objects: each meets Guard on its own and the third stone requires Impulse overload.",
+      "normal": {
+        "formula": "Cost 1 Impulse; PrimaryBudget = 2×74.256×Q(Spirit); hit1=PrimaryBudget/2; hit2=hit1×E30(Reaction/Technique)",
+        "description_ru": "Каждый камень отдельно встречает Guard. Перегрузка покупает третий камень, а не скрытое пробитие.",
+        "description_en": "Each stone meets Guard separately. Empower buys a third stone instead of hidden penetration."
+      },
+      "ultimate": {
+        "formula": "Cost 1 Impulse; PrimaryBudget = 2×135.096×Q(Spirit); hit1=PrimaryBudget/2; hit2=hit1×E30; Overload hit3=135.096×Q(Onslaught)×E30; STAGGER breach rider unchanged",
+        "description_ru": "Ultimate награждает реальный прорыв серии через Стойку, но базово остаётся двумя попаданиями.",
+        "description_en": "Ultimate rewards a real same-action barrage breach through Guard while remaining two base hits."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 10,
+      "key": "dragon_roar",
+      "name_ru": "Рёв дракона",
+      "emoji": "🐉",
+      "initiative": 35,
+      "initiative_hex": "0x23",
+      "roles": {
+        "primary": "spirit",
+        "support": "onslaught",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "attack",
+        "control",
+        "magic",
+        "negative",
+        "psychic",
+        "ranged",
+        "verbal"
+      ],
+      "lore": "Магический рёв покупает сильный прямой удар по Psyche за Импульс. Ultimate добавляет FEAR только против уже раскрытой цели без Импульса.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+reaction",
+      "normal_damage_scale": 11.5,
+      "ultimate_damage_scale": 11.5,
+      "normal_effective_direct_damage_scale": 11.5,
+      "name_en": "Dragon Roar",
+      "lore_ru": "Дух создаёт сверхъестественный рёв, который напрямую давит Психику и не превращает Импульс в щит.",
+      "lore_en": "Spirit creates a supernatural roar that pressures Psyche directly without turning Impulse into a barrier.",
+      "normal": {
+        "formula": "Psychic base = 187.68 × [0.70 Q(Spirit) + 0.30 Q(Onslaught) × E25(Reaction/Technique)]",
+        "description_ru": "Сверхъестественный прямой урон Psyche.",
+        "description_en": "Supernatural direct Psyche damage."
+      },
+      "ultimate": {
+        "formula": "Psychic base = 298.77 × [0.70 Q(Spirit) + 0.30 Q(Onslaught) × E25]; exposed/low/Overload bonuses scale with Q(Onslaught)×E30(Reaction/Technique)",
+        "description_ru": "Ultimate наказывает уже подготовленную цель: бонусы за 0 Impulse и низкую Psyche складываются. Overload даёт дополнительный удар только по уже подготовленной цели.",
+        "description_en": "Ultimate punishes a target that was already prepared: bonuses for zero Impulse and low Psyche stack. Overload adds a bonus hit only when at least one setup condition was true before the action."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 11,
+      "key": "heal",
+      "name_ru": "Исцеление",
+      "emoji": "🩹",
+      "initiative": 57,
+      "initiative_hex": "0x39",
+      "roles": {
+        "primary": "spirit",
+        "support": "reaction",
+        "auxiliary": "self_control"
+      },
+      "tags": [
+        "magic",
+        "physical",
+        "positive",
+        "recovery"
+      ],
+      "lore": "Клирик через обращение к системе восстанавливает телесную целостность; Ultimate ставит Life Guard, а платный Empower усиливает и лечение, и качество спасения.",
+      "initiative_group": "recovery",
+      "initiative_lore_tempo": "self_control+reaction",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Healing",
+      "lore_ru": "Священная магия быстро восстанавливает телесную целостность; боевая Стойка возникает из подготовки, а не из лишнего лечения.",
+      "lore_en": "Sacred magic rapidly restores bodily integrity; combat Guard comes from preparation, not excess healing.",
+      "normal": {
+        "formula": "Endurance heal = 195.84 × [0.70 Q(Spirit) + 0.30 Q(Reaction)]",
+        "description_ru": "Быстрое магическое лечение; усиление покупает дополнительный объём.",
+        "description_en": "Fast magical healing; Empower buys additional volume."
+      },
+      "ultimate": {
+        "formula": "Heal = 389.7 × [0.70 Q(Spirit) + 0.30 Q(Reaction)]; LIFE_GUARD revive ratio = neutral ±15pp from Self-Control/Onslaught bias; Overload bonus uses same heal factor",
+        "description_ru": "Экстренное лечение и одна страховка от телесного поражения; лишняя Выносливость Guard не создаёт.",
+        "description_en": "Emergency healing and one safeguard from bodily defeat; excess Endurance does not create Guard."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 12,
+      "key": "cleanse",
+      "name_ru": "Очищение",
+      "emoji": "💧",
+      "initiative": 57,
+      "initiative_hex": "0x39",
+      "roles": {
+        "primary": "self_control",
+        "support": "spirit",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "cleanse",
+        "magic",
+        "positive",
+        "psychic"
+      ],
+      "lore": "Очищение снимает негативные эффекты и направляет восстановление в повреждённый контур: Curse → Endurance, mental/control → Psyche, mixed → 50/50. Ultimate даёт больше защитных зарядов, а Overload добавляет короткий Resolute.",
+      "initiative_group": "recovery",
+      "initiative_lore_tempo": "self_control+reaction",
+      "normal_damage_scale": 0.0,
+      "ultimate_damage_scale": 0.0,
+      "normal_effective_direct_damage_scale": 0.0,
+      "name_en": "Cleanse",
+      "lore_ru": "Очищение восстанавливает именно повреждённый контур: телесное Проклятие возвращает Endurance, ментальный контроль — Psyche, а смешанный вред делит один и тот же восстановительный бюджет.",
+      "lore_en": "Cleanse restores the damaged layer itself: bodily Curse returns Endurance, mental control returns Psyche, and mixed harm splits the same recovery budget.",
+      "normal": {
+        "formula": "Triggered recovery budget = 979.2 × [0.70 Q(Self-Control) + 0.30 Q(Spirit) × E25(Reaction/Technique)]; CLEANSE_GUARD ×1",
+        "description_ru": "Curse восстанавливают Endurance, mental/control-негативы восстанавливают Psyche, смешанный набор делит тот же бюджет 50/50. Если реально ничего не снято, немедленного лечения нет.",
+        "description_en": "Curse route recovery to Endurance, mental/control negatives route it to Psyche, and a mixed set splits the same budget 50/50. No actual dispel means no immediate healing."
+      },
+      "ultimate": {
+        "formula": "Triggered recovery budget = 1558.8 × [0.70 Q(Self-Control) + 0.30 Q(Spirit) × E25(Reaction/Technique)]; Ultimate/Overload guard riders unchanged",
+        "description_ru": "Защитные заряды блокируют будущие негативы и восстанавливают тот контур, по которому бил заблокированный статус: Curse → Endurance, mental/control → Psyche.",
+        "description_en": "Protection charges block future negative effects and restore the resource attacked by the blocked status: Curse → Endurance, mental/control → Psyche."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 13,
+      "key": "curse",
+      "name_ru": "Проклятие",
+      "emoji": "🧪",
+      "initiative": 38,
+      "initiative_hex": "0x26",
+      "roles": {
+        "primary": "technique",
+        "support": "onslaught",
+        "auxiliary": "spirit"
+      },
+      "tags": [
+        "attack",
+        "dot",
+        "magic",
+        "negative",
+        "physical",
+        "projectile",
+        "ranged"
+      ],
+      "lore": "Техника формирует разъедающее проявление: initial hit и Curse DoT давят Endurance, Проклятие также режет восстановление; Overload усиливает anti-heal часть Проклятия, не повышая DoT.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+technique",
+      "normal_damage_scale": 5.5,
+      "ultimate_damage_scale": 6.5,
+      "normal_effective_direct_damage_scale": 5.5,
+      "name_en": "Curse",
+      "lore_ru": "Проклятие закрепляется на теле и постепенно подтачивает Endurance; anti-heal часть Проклятия ослабляет только восстановление Endurance и не уменьшает дискретный набор Guard.",
+      "lore_en": "Curse takes hold on the body and steadily erodes Endurance; the Curse anti-heal rider weakens Endurance healing only and does not reduce discrete Guard gain.",
+      "normal": {
+        "formula": "Initial Physical = 89.76×Q(Onslaught); DoT total = 97.92×Q(Technique); anti-heal reduction = neutral + 0.15×bias(Spirit/Body)",
+        "description_ru": "Проклятие давит Endurance первичным ударом и остаточным уроном; anti-heal часть Проклятия на один раунд сильно режет восстановление Endurance.",
+        "description_en": "Curse pressures Endurance with an initial hit and lingering damage; the Curse anti-heal rider strongly cuts Endurance healing for one round."
+      },
+      "ultimate": {
+        "formula": "Initial Physical = 168.87×Q(Onslaught); DoT total = 207.84×Q(Technique); Ultimate/Overload anti-heal uses its neutral anchor + 0.15×bias(Spirit/Body)",
+        "description_ru": "Ultimate усиливает именно anti-heal роль. Overload углубляет и продлевает anti-heal часть Проклятия, но не умножает DoT ещё раз.",
+        "description_en": "Ultimate strengthens the anti-heal role. Overload deepens and extends the Curse anti-heal rider but does not multiply the DoT again; Curse anti-heal does not scale discrete Guard gain."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 14,
+      "key": "silence",
+      "name_ru": "Молчанка",
+      "emoji": "🤐",
+      "initiative": 6,
+      "initiative_hex": "0x06",
+      "roles": {
+        "primary": "technique",
+        "support": "spirit",
+        "auxiliary": "onslaught"
+      },
+      "tags": [
+        "control",
+        "magic",
+        "negative",
+        "psychic"
+      ],
+      "lore": "Молчанка стирает возможность речи и наносит небольшой Psychic-удар от осознания утраты голоса. В новых дуэлях она блокирует речевые действия на два полных раунда (I–III) или три (IV–VI), независимо от того, магические они или нет; успешный блок в Ultimate даёт STAGGER ×1. Архивные бои сохраняют прежние заряды блокировки.",
+      "initiative_group": "control",
+      "initiative_lore_tempo": "onslaught+technique",
+      "normal_damage_scale": 1.8,
+      "ultimate_damage_scale": 2.4,
+      "normal_effective_direct_damage_scale": 1.8,
+      "name_en": "Silence",
+      "lore_ru": "Молчанка временно нарушает речевой канал: голос возвращается через два полных раунда I–III или три IV–VI. Решимость от отсутствия голоса не защищает.",
+      "lore_en": "Silence temporarily disrupts speech: the voice returns after two full rounds at I–III or three at IV–VI. Resolve cannot restore a missing voice.",
+      "normal": {
+        "formula": "Psychic = 29.376 × [0.70 Q(Technique) + 0.30 Q(Spirit) × E25(Onslaught/Self-Control)]; Silence duration unchanged",
+        "description_ru": "Блокирует речь, а не магию, на два полных раунда и наносит небольшой психический удар. Конец раунда наложения не расходует длительность. Архивные бои сохраняют прежние заряды.",
+        "description_en": "Blocks speech, not magic, for two full rounds and deals a small Psychic hit. The application round end is skipped. Archived battles retain legacy charges."
+      },
+      "ultimate": {
+        "formula": "Psychic = 62.352 × [0.70 Q(Technique) + 0.30 Q(Spirit) × E25(Onslaught/Self-Control)]; STAGGER/Overload control riders unchanged",
+        "description_ru": "В IV–VI тирах речь блокируется на три полных раунда. Overload сохраняет длительность, а не накапливает дополнительные заряды.",
+        "description_en": "At tiers IV–VI speech is blocked for three full rounds. Overload keeps this duration instead of accumulating charges."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 15,
+      "key": "physical_vampirism",
+      "name_ru": "Физический вампиризм",
+      "emoji": "🩸",
+      "initiative": 44,
+      "initiative_hex": "0x2C",
+      "roles": {
+        "primary": "spirit",
+        "support": "technique",
+        "auxiliary": "self_control"
+      },
+      "tags": [
+        "attack",
+        "contact",
+        "drain",
+        "magic",
+        "melee",
+        "negative",
+        "physical"
+      ],
+      "lore": "Дух заставляет систему перевести часть реально отнятой жизненной целостности владельцу навыка.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "self_control+technique",
+      "normal_damage_scale": 9.1,
+      "ultimate_damage_scale": 8.0,
+      "normal_effective_direct_damage_scale": 9.1,
+      "name_en": "Physical Vampirism",
+      "lore_ru": "Физический вампиризм требует реального контакта. Overload тратит собственный Guard на более опасный контакт и усиливает урон только против уже открытой цели, не ломая Guard сам по себе.",
+      "lore_en": "Physical Vampirism requires real contact. Overload spends the user's Guard on a riskier contact and amplifies damage only against a target that was already open; it does not break Guard by itself.",
+      "normal": {
+        "formula": "Physical raw damage = 148.512×Q(Spirit); heal fraction = VampCurve(Technique)×E30(Self-Control/Onslaught)",
+        "description_ru": "Кража работает по реально нанесённому урону.",
+        "description_en": "Drain uses actual Endurance damage dealt."
+      },
+      "ultimate": {
+        "formula": "Physical raw damage = 207.84×Q(Spirit), ×1.35 on open target; Overload open target applies the second ×1.35; heal uses actual damage × VampCurve(Technique) × E30(Self-Control/Onslaught)",
+        "description_ru": "Ultimate добивает открытую цель. Overload платит 1 Guard и ещё раз усиливает урон только если цель была без Guard до действия; сам Overload Guard цели не ломает.",
+        "description_en": "Ultimate finishes an open target. Overload spends 1 Guard and adds another damage multiplier only when the target was already open before the action; the overload itself does not crush target Guard."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 16,
+      "key": "psychic_vampirism",
+      "name_ru": "Психический вампиризм",
+      "emoji": "👁️",
+      "initiative": 44,
+      "initiative_hex": "0x2C",
+      "roles": {
+        "primary": "spirit",
+        "support": "technique",
+        "auxiliary": "self_control"
+      },
+      "tags": [
+        "attack",
+        "drain",
+        "magic",
+        "negative",
+        "psychic",
+        "ranged"
+      ],
+      "lore": "Психический вампиризм вытягивает только реально повреждённую Psyche. Сбой и кража 1 Импульса доступны только через платный Empower; обычный Psychic damage ресурс не расходует.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "self_control+technique",
+      "normal_damage_scale": 8.0,
+      "ultimate_damage_scale": 11.0,
+      "normal_effective_direct_damage_scale": 8.0,
+      "name_en": "Psychic Vampirism",
+      "lore_ru": "Магия переносит реально отнятую Психику; кража подготовленного Импульса требует отдельного усиления.",
+      "lore_en": "Magic transfers Psyche actually taken; stealing prepared Impulse requires an explicit Empower.",
+      "normal": {
+        "formula": "Psychic raw damage = 130.56×Q(Spirit); heal fraction = VampCurve(Technique)×E30(Self-Control/Onslaught)",
+        "description_ru": "Психический drain идёт прямо через Psyche.",
+        "description_en": "Psychic drain acts directly through Psyche."
+      },
+      "ultimate": {
+        "formula": "Psychic raw damage = 285.78×Q(Spirit); heal uses actual damage × VampCurve(Technique) × E30(Self-Control/Onslaught); Overload Impulse-steal rider unchanged",
+        "description_ru": "Overheal больше не печатает Impulse; кража чужого Impulse отдельно покупается усилением.",
+        "description_en": "Overheal no longer mints Impulse; stealing enemy Impulse is separately purchased through Empower."
+      },
+      "can_empower": true,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 17,
+      "key": "basic_physical",
+      "name_ru": "Базовая физическая атака",
+      "emoji": "👊",
+      "initiative": 35,
+      "initiative_hex": "0x23",
+      "roles": {
+        "primary": "body",
+        "support": "onslaught",
+        "auxiliary": "reaction"
+      },
+      "tags": [
+        "attack",
+        "contact",
+        "melee",
+        "negative",
+        "physical"
+      ],
+      "lore": "Пустая грань выражает базовую телесную атаку суммарным фенотипом всего кубика.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "onslaught+reaction",
+      "normal_damage_scale": 1.0,
+      "ultimate_damage_scale": 1.0,
+      "normal_effective_direct_damage_scale": 1.0,
+      "kind": "basic_attack_benchmark",
+      "balance_tier": 2,
+      "name_en": "Basic Physical Attack",
+      "lore_ru": "Пустая физическая грань — базовое немагическое действие и поэтому после исполнения возвращает 1 Импульс.",
+      "lore_en": "An empty Physical face is a baseline non-MAGIC action and therefore restores 1 Impulse after execution.",
+      "normal": {
+        "formula": "Physical = 9 × basic base; +1 Impulse",
+        "description_ru": "Базовая физическая атака пустой грани.",
+        "description_en": "The empty face's baseline Physical attack."
+      },
+      "ultimate": {
+        "formula": "Empty faces always use Tier I; no Ultimate/Overload",
+        "description_ru": "Чистая эталонная атака без дополнительного эффекта.",
+        "description_en": "A pure benchmark attack without an additional rider."
+      },
+      "can_empower": false,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    },
+    {
+      "id": 18,
+      "key": "basic_psychic",
+      "name_ru": "Базовая психическая атака",
+      "emoji": "💭",
+      "initiative": 44,
+      "initiative_hex": "0x2C",
+      "roles": {
+        "primary": "spirit",
+        "support": "self_control",
+        "auxiliary": "technique"
+      },
+      "tags": [
+        "attack",
+        "negative",
+        "psychic",
+        "ranged"
+      ],
+      "lore": "Пустая грань направляет базовое духовное воздействие суммарным фенотипом всего кубика.",
+      "initiative_group": "attack",
+      "initiative_lore_tempo": "self_control+technique",
+      "normal_damage_scale": 1.0,
+      "ultimate_damage_scale": 1.0,
+      "normal_effective_direct_damage_scale": 1.0,
+      "kind": "basic_attack_benchmark",
+      "balance_tier": 2,
+      "name_en": "Basic Psychic Attack",
+      "lore_ru": "Пустая психическая грань — базовое немагическое воздействие Духа и после исполнения возвращает 1 Импульс.",
+      "lore_en": "An empty Psychic face is Spirit's baseline non-MAGIC action and restores 1 Impulse after execution.",
+      "normal": {
+        "formula": "Psychic = 6 × basic base; +1 Impulse",
+        "description_ru": "Базовая психическая атака слабее физической, потому что идёт прямо в Psyche мимо Guard.",
+        "description_en": "The baseline Psychic attack is weaker because it reaches Psyche directly and bypasses Guard."
+      },
+      "ultimate": {
+        "formula": "Empty faces always use Tier I; no Ultimate/Overload",
+        "description_ru": "Чистая эталонная атака без дополнительного эффекта.",
+        "description_en": "A pure benchmark attack without an additional rider."
+      },
+      "can_empower": false,
+      "portability_ru": "Формула описывает текущий исполняемый эксперимент Arena. Для других игр переносится семантика навыка, а коэффициенты и ресурсы пересчитываются.",
+      "portability_en": "This formula documents the current executable Arena experiment. Other games should carry over semantics while recalculating coefficients and resources."
+    }
+  ]
+}
